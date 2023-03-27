@@ -10,6 +10,8 @@ from PyQt5.QtCore import Qt
 
 import sys
 from datetime import date, datetime
+import pandas
+from openpyxl import load_workbook
 
 tipos_publicaciones = {
     "Publicación científica periódica",
@@ -366,6 +368,13 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
         self.dateEdit_envio.setDateTime(qtc.QDateTime.currentDateTime())
         self.dateEdit_publicacion.setDateTime(qtc.QDateTime.currentDateTime())
 
+        self.checkBox_aceptado.stateChanged.connect(self.aceptadoStateChange)
+        self.checkBox_submitido.stateChanged.connect(self.submitidoStateChange)
+        self.checkBox_publicado.stateChanged.connect(self.publicadoStateChange)
+
+        self.checkBox_ejecucion.stateChanged.connect(self.ejecucionStateChange)
+        self.checkBox_finalizado.stateChanged.connect(self.finalizadoStateChange)
+
         for each in sorted(tipos_publicaciones):
             self.comboBox_tipo.addItem(each)
         for each in sorted(revistas):
@@ -382,6 +391,90 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
             self.comboBox_direccion.addItem(each)
 
         self.pushButton_agregar_autor.clicked.connect(self.show_add_author)
+        self.pushButton_input.clicked.connect(self.input_data)
+
+    def ejecucionStateChange(self):
+        if self.checkBox_ejecucion.isChecked():
+            self.checkBox_finalizado.setChecked(False)
+            self.project_state = "Ejecucion"
+
+    def finalizadoStateChange(self):
+        if self.checkBox_finalizado.isChecked():
+            self.checkBox_ejecucion.setChecked(False)
+            self.project_state = "Finalizado"
+
+    def aceptadoStateChange(self):
+        if self.checkBox_aceptado.isChecked():
+            self.checkBox_publicado.setChecked(False)
+            self.checkBox_submitido.setChecked(False)
+            self.pub_state = "Aceptado"
+
+    def submitidoStateChange(self):
+        if self.checkBox_submitido.isChecked():
+            self.checkBox_aceptado.setChecked(False)
+            self.checkBox_publicado.setChecked(False)
+            self.pub_state = "Submitido"
+
+    def publicadoStateChange(self):
+        if self.checkBox_publicado.isChecked():
+            self.checkBox_aceptado.setChecked(False)
+            self.checkBox_submitido.setChecked(False)
+            self.pub_state = "Publicado"
+
+    def input_data(self):
+        self.excel_data_df = pandas.read_excel(
+            "INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx", sheet_name="Pbl_2022", header=1
+        )
+        self.last_No = self.excel_data_df["No."].iloc[-1]
+        print(self.last_No)
+        # if (
+        #     not self.checkBox_submitido.isChecked()
+        #     or not self.checkBox_publicado.isChecked()
+        #     or not self.checkBox_aceptado.isChecked()
+        # ):
+        #     qtw.QMessageBox.information(
+        #         self, "Error", "Seleccione estado de la publicacion"
+        #     )
+        #     return
+        if (
+            not self.checkBox_finalizado.isChecked()
+            or not self.checkBox_ejecucion.isChecked()
+        ):
+            self.project_state = None
+            
+
+        to_append = [
+            self.last_No + 1,
+            self.textEdit_titulo.toPlainText(),
+            self.comboBox_tipo.currentText(),
+            self.comboBox_revista.currentText(),
+            self.comboBox_categoria.currentText(),
+            self.comboBox_pais.currentText(),
+            self.dateEdit_publicacion.date().toPyDate(),
+            self.comboBox_databases.currentText(),
+            self.comboBox_area_salud.currentText(),
+            self.spinBox_indiceH.value(),
+            self.textEdit_autores.toPlainText(),
+            addAuthor.genero,
+            self.lineEdit_doi.text(),
+            self.lineEdit_issn.text(),
+            self.textEdit_resumen.toPlainText(),
+            self.dateEdit_envio.date().toPyDate(),
+            self.dateEdit_aceptacion.date().toPyDate(),
+            "Q1",
+            self.pub_state,
+            self.textEdit_pagweb.toPlainText(),
+            self.comboBox_direccion.currentText(),
+            self.textEdit_proyecto.toPlainText(),
+            self.project_state,
+            self.textEdit_observaciones.toPlainText(),
+        ]
+        wb = load_workbook("INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx")
+        ws = wb["Pbl_2022"]
+        ws.append(to_append)
+        wb.save("INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx")
+        print("saved")
+        
 
     def show_add_author(self):
         # addAuthor.__init__()  # To clear all fields
@@ -393,10 +486,12 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
         addAuthor.checkBox_fem.setChecked(False)
         addAuthor.checkBox_otro.setChecked(False)
         addAuthor.lineEdit_genero.setReadOnly(True)
-        
+
     def get_author(self, author_name):
         if str(self.textEdit_autores.toPlainText()) != "":
-            authors_str = str(self.textEdit_autores.toPlainText()) + "\n" +str(author_name)
+            authors_str = (
+                str(self.textEdit_autores.toPlainText()) + "\n" + str(author_name)
+            )
             self.textEdit_autores.setPlainText(authors_str)
         else:
             authors_str = str(author_name)
@@ -405,6 +500,7 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
 
 class AddAuthor(qtw.QDialog, Ui_Dialog_add_author):
     send_authors = qtc.pyqtSignal(str)
+
     def __init__(self, *args, **kwargs):
         super(AddAuthor, self).__init__(*args, **kwargs)
         self.setupUi(self)
@@ -421,6 +517,12 @@ class AddAuthor(qtw.QDialog, Ui_Dialog_add_author):
         self.checkBox_otro.stateChanged.connect(self.otherStateChange)
 
     def add_author(self):
+        if (
+            str(self.lineEdit_nombres.text()) == ""
+            or str(self.lineEdit_apellidos.text()) == ""
+        ):
+            qtw.QMessageBox.information(self, "Error", "Ingrese nombres y apellidos")
+            return
         self.full_name = (
             str(self.lineEdit_nombres.text())
             + " "
@@ -428,7 +530,7 @@ class AddAuthor(qtw.QDialog, Ui_Dialog_add_author):
         )
         if self.checkBox_otro.isChecked():
             self.genero = self.lineEdit_genero.text()
-        
+
         self.send_authors.emit(str(self.full_name))
         print(self.full_name, self.genero)
         # print(self.send_authors)
