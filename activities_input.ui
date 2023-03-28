@@ -13,6 +13,68 @@
   <property name="windowTitle">
    <string>PublicacionesGIDI</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+  background-color: #fff;
+}
+QLabel {
+  color: #464d55;
+  font-weight: 600;
+}
+QLabel#heading {
+  color: #0f1925;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+QLabel#subheading {
+  color: #0f1925;
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+QLineEdit {
+  border-radius: 8px;
+  border: 1px solid #e0e4e7;
+  padding: 5px 15px;
+}
+
+QLineEdit:focus {
+  border: 1px solid #d0e3ff;
+}
+
+QLineEdit::placeholder {
+  color: #767e89;
+}
+QPushButton {
+  background-color: #0d6efd;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid #0d6efd;
+  padding: 10px 10px;
+  margin-top: 10px;
+  outline: 0px;
+}
+QPushButton:hover,
+QPushButton:focus {
+  background-color: #0b5ed7;
+  border: 1px solid #9ac3fe;
+}
+QMenu {
+background-color: #fff;
+border: 1px solid black;
+margin: 2px;
+}
+QMenu::item {
+background-color: transparent;
+}
+QMenu::item:selected {
+background-color: #0b5ed7;
+color: rgb(255,255,255);
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
@@ -39,64 +101,6 @@
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="1">
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="2" column="1">
-           <widget class="QTextEdit" name="textEdit_resumen"/>
-          </item>
-          <item row="5" column="0" rowspan="3">
-           <widget class="QLabel" name="label_20">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Estado:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QDateEdit" name="dateEdit_envio">
-            <property name="calendarPopup">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_issn"/>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_18">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Fecha de envío:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_16">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>ISSN:</string>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="1">
            <widget class="QDateEdit" name="dateEdit_aceptacion">
             <property name="calendarPopup">
@@ -107,22 +111,14 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_doi"/>
-          </item>
-          <item row="5" column="1">
-           <widget class="QCheckBox" name="checkBox_submitido">
-            <property name="text">
-             <string>Submitido</string>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="0">
            <widget class="QLabel" name="label_19">
             <property name="font">
              <font>
               <family>Inter</family>
               <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
               <kerning>true</kerning>
              </font>
@@ -135,25 +131,37 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
-           <widget class="QCheckBox" name="checkBox_publicado">
-            <property name="text">
-             <string>Publicado</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_17">
+          <item row="5" column="0" rowspan="3">
+           <widget class="QLabel" name="label_20">
             <property name="font">
              <font>
               <family>Inter</family>
               <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
               <kerning>true</kerning>
              </font>
             </property>
             <property name="text">
-             <string>Resumen:</string>
+             <string>Estado:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QTextEdit" name="textEdit_resumen"/>
+          </item>
+          <item row="6" column="1">
+           <widget class="QCheckBox" name="checkBox_aceptado">
+            <property name="text">
+             <string>Aceptado</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QCheckBox" name="checkBox_submitido">
+            <property name="text">
+             <string>Submitido</string>
             </property>
            </widget>
           </item>
@@ -163,6 +171,8 @@
              <font>
               <family>Inter</family>
               <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
               <kerning>true</kerning>
              </font>
@@ -172,10 +182,74 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
-           <widget class="QCheckBox" name="checkBox_aceptado">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
             <property name="text">
-             <string>Aceptado</string>
+             <string>Resumen:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_18">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Fecha de envío:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEdit_doi"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEdit_issn"/>
+          </item>
+          <item row="3" column="1">
+           <widget class="QDateEdit" name="dateEdit_envio">
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>ISSN:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QCheckBox" name="checkBox_publicado">
+            <property name="text">
+             <string>Publicado</string>
             </property>
            </widget>
           </item>
@@ -196,6 +270,8 @@
              <font>
               <family>Inter</family>
               <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
               <kerning>true</kerning>
              </font>
@@ -218,6 +294,8 @@
              <font>
               <family>Inter</family>
               <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
               <kerning>true</kerning>
              </font>
@@ -233,6 +311,8 @@
              <font>
               <family>Inter</family>
               <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
               <kerning>true</kerning>
              </font>
@@ -254,6 +334,8 @@
              <font>
               <family>Inter</family>
               <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
               <kerning>true</kerning>
              </font>
@@ -278,6 +360,8 @@
              <font>
               <family>Inter</family>
               <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
               <stylestrategy>PreferAntialias</stylestrategy>
               <kerning>true</kerning>
              </font>
@@ -291,34 +375,6 @@
         </item>
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout">
-          <item row="8" column="1">
-           <widget class="QSpinBox" name="spinBox_indiceH">
-            <property name="maximum">
-             <number>1000</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="comboBox_categoria"/>
-          </item>
-          <item row="9" column="0">
-           <widget class="QLabel" name="label_10">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Autores:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="comboBox_revista"/>
-          </item>
           <item row="5" column="1">
            <widget class="QDateEdit" name="dateEdit_publicacion">
             <property name="calendarPopup">
@@ -326,177 +382,17 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_5">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>País de origen de la revista:</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
+          <item row="3" column="1">
+           <widget class="QComboBox" name="comboBox_categoria"/>
           </item>
-          <item row="7" column="1">
-           <widget class="QComboBox" name="comboBox_area_salud"/>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_8">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Área de salud:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_4">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Categoría:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBox_tipo"/>
-          </item>
-          <item row="4" column="1">
-           <widget class="QComboBox" name="comboBox_pais"/>
-          </item>
-          <item row="10" column="1">
+          <item row="12" column="1">
            <widget class="QPushButton" name="pushButton_agregar_autor">
             <property name="text">
              <string>Agregar Autor</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Título:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Revista:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Tipo de Publicación:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Base de datos - indexadas:</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Fecha de publicación:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="1">
-           <widget class="QTextEdit" name="textEdit_autores">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="label_9">
-            <property name="font">
-             <font>
-              <family>Inter</family>
-              <pointsize>11</pointsize>
-              <stylestrategy>PreferAntialias</stylestrategy>
-              <kerning>true</kerning>
-             </font>
-            </property>
-            <property name="text">
-             <string>Índice de citación - Índice H</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QTextEdit" name="textEdit_titulo"/>
-          </item>
-          <item row="10" column="0">
+          <item row="12" column="0">
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -509,8 +405,223 @@
             </property>
            </spacer>
           </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Categoría:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Fecha de publicación:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QSpinBox" name="spinBox_indiceH">
+            <property name="maximum">
+             <number>1000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QComboBox" name="comboBox_area_salud"/>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Índice de citación - Índice H</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QPushButton" name="pushButton_add_database">
+            <property name="text">
+             <string>Agregar</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
+           <widget class="QTextEdit" name="textEdit_autores">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>País de origen de la revista:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="comboBox_revista"/>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="comboBox_pais"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="comboBox_tipo"/>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Área de salud:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Base de datos - indexadas:</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Revista:</string>
+            </property>
+           </widget>
+          </item>
           <item row="6" column="1">
-           <widget class="QComboBox" name="comboBox_databases"/>
+           <widget class="QTextEdit" name="textEdit_databases"/>
+          </item>
+          <item row="0" column="1">
+           <widget class="QTextEdit" name="textEdit_titulo"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Tipo de Publicación:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Título:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="font">
+             <font>
+              <family>Inter</family>
+              <pointsize>11</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <stylestrategy>PreferAntialias</stylestrategy>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="text">
+             <string>Autores:</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
