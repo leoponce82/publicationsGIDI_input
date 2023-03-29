@@ -597,7 +597,11 @@ color: rgb(255,255,255);
            </widget>
           </item>
           <item row="6" column="1">
-           <widget class="QTextEdit" name="textEdit_databases"/>
+           <widget class="QTextEdit" name="textEdit_databases">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="0" column="1">
            <widget class="QTextEdit" name="textEdit_titulo"/>
@@ -659,6 +663,13 @@ color: rgb(255,255,255);
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout_5">
+        <item row="1" column="0" colspan="2">
+         <widget class="QToolButton" name="toolButton_logout">
+          <property name="text">
+           <string>Salir</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_12">
           <property name="text">
@@ -693,10 +704,10 @@ color: rgb(255,255,255);
           </property>
          </widget>
         </item>
-        <item row="1" column="0" colspan="2">
-         <widget class="QToolButton" name="toolButton_logout">
+        <item row="1" column="3">
+         <widget class="QToolButton" name="toolButton_search_data">
           <property name="text">
-           <string>Salir</string>
+           <string>            Búsqueda            </string>
           </property>
          </widget>
         </item>

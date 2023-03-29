@@ -1,10 +1,26 @@
-from activities_input_code import Ui_MainWindow
-from add_author_code import Ui_Dialog_add_author
-from add_databases_code import Ui_Dialog_add_databases
-from login_code import Ui_Dialog_Login
-from new_user_code import Ui_Dialog_new_user
-from recover_password_code import Ui_Dialog_recover_password
-from pub_search_code import Ui_MainWindow_pub_search
+from ui_files.activities_input_code import Ui_MainWindow
+# from ui_classes.pub_input_class import PublicationsWindow
+
+from ui_files.add_author_code import Ui_Dialog_add_author
+# from ui_classes.add_author_class import AddAuthor
+
+from ui_files.add_databases_code import Ui_Dialog_add_databases
+# from ui_classes.add_database_class import AddDatabase
+
+from ui_files.login_code import Ui_Dialog_Login
+# from ui_classes.login_class import DialogLogin
+
+from ui_files.new_user_code import Ui_Dialog_new_user
+# from ui_classes.new_user_class import DialogNewUser
+
+from ui_files.recover_password_code import Ui_Dialog_recover_password
+# from ui_classes.recover_password_class import DialogRecoverPassword
+
+from ui_files.pub_search_code import Ui_MainWindow_pub_search
+# from ui_classes.pub_search_class import PubSearch
+
+from ui_files.menu_code import Ui_MainWindow_menu
+# from ui_classes.menu_class import MenuWindow
 
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
@@ -23,6 +39,7 @@ from datetime import date, datetime
 import pandas
 from openpyxl import load_workbook
 
+EXPORT_FILE_NAME = "data.xlsx"
 ADMIN_USER = "admin"
 ADMIN_PASSWORD = "admin"
 path = "./users.db"
@@ -420,9 +437,9 @@ direcciones = {"GIDI CZ9"}
 proy_status = {"Publicado", "Submitido", "Aceptado"}
 
 
-class WindowUi(qtw.QMainWindow, Ui_MainWindow):
+class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
-        super(WindowUi, self).__init__(*args, **kwargs)
+        super(PublicationsWindow, self).__init__(*args, **kwargs)
         self.setupUi(self)
 
         self.setWindowIcon(qtg.QIcon("logo256png.png"))
@@ -460,10 +477,14 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
         self.pushButton_input.clicked.connect(self.input_data)
         self.pushButton_add_database.clicked.connect(self.show_add_database)
         self.toolButton_logout.clicked.connect(self.logout)
+        self.toolButton_search_data.clicked.connect(self.search_data)
 
     def logout(self):
         self.close()
         dialogLogin.show()
+    
+    def search_data(self):
+        pubSearch.show()
 
     def ejecucionStateChange(self):
         if self.checkBox_ejecucion.isChecked():
@@ -554,6 +575,8 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
         ws.append(to_append)
         wb.save("INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx")
         print("saved")
+        qtw.QMessageBox.information(self, "Exito", "Datos ingresados correctamente")
+        
 
     def show_add_author(self):
         # addAuthor.__init__()  # To clear all fields
@@ -688,6 +711,7 @@ class PubSearch(qtw.QMainWindow, Ui_MainWindow_pub_search):
         )
 
         self.pushButton_search.clicked.connect(self.search)
+        self.pushButton_export.clicked.connect(self.export_data)
 
         for each in sorted(tipos_publicaciones):
             self.comboBox_type_search.addItem(each)
@@ -699,8 +723,14 @@ class PubSearch(qtw.QMainWindow, Ui_MainWindow_pub_search):
             self.comboBox_area_search.addItem(each)
         for each in sorted(proy_status):
             self.comboBox_pub_state_search.addItem(each)
-
-        self.show()
+    
+    def export_data(self):
+        folderpath = qtw.QFileDialog.getExistingDirectory(self, 'Select Folder')
+        print(folderpath)
+        try:
+            self.export_df.to_excel(f"{folderpath}/{EXPORT_FILE_NAME}", index=False)
+        except AttributeError:
+            pass
 
     def search(self):
         publications_df = pandas.read_excel(
@@ -711,7 +741,7 @@ class PubSearch(qtw.QMainWindow, Ui_MainWindow_pub_search):
             keywords_list = (
                 (str(self.lineEdit_keywords.text())).lower().replace(" ", "").split(",")
             )
-            print(keywords_list)
+            # print(keywords_list)
         else:
             keywords_list = []
 
@@ -756,24 +786,7 @@ class PubSearch(qtw.QMainWindow, Ui_MainWindow_pub_search):
             pub_state_list = [str(self.comboBox_pub_state_search.currentText())]
         else:
             pub_state_list = []
-
-        # publications_df = publications_df[
-        #     publications_df["Título"].str.lower().str.contains("|".join(keywords_list))
-        #     & (publications_df["TIPO DE PUBLICACIÓN"].isin(type_list))
-        #     & (publications_df["Revista"].isin(journal_list))
-        #     & (publications_df.iloc[:, 4].isin(category_list))
-        #     & (
-        #         publications_df[
-        #             "Área de salud en la que esta enfocada la publicación"
-        #         ].isin(area_list)
-        #     )
-        #     & (
-        #         publications_df["Nombres del autor (INSPI)"]
-        #         .str.lower()
-        #         .str.contains("|".join(author_list))
-        #     )
-        # ]
-
+        ###################
         filtered_df = publications_df.copy()
         if keywords_list:
             filtered_df = filtered_df[
@@ -807,7 +820,7 @@ class PubSearch(qtw.QMainWindow, Ui_MainWindow_pub_search):
             filtered_df = filtered_df[
                 filtered_df["Estado"].str.strip().isin(pub_state_list)
             ]
-
+        self.export_df = filtered_df.copy()
         model = pandasModel(filtered_df)
         self.tableView.setModel(model)
 
@@ -845,7 +858,7 @@ class DialogLogin(qtw.QDialog, Ui_Dialog_Login):
         if self.user == ADMIN_USER:
             if self.password == ADMIN_PASSWORD:
                 self.send_username.emit(str(self.user))
-                windowUi.show()
+                menuWindow.show()
                 dialogLogin.close()
                 return
             else:
@@ -872,7 +885,7 @@ class DialogLogin(qtw.QDialog, Ui_Dialog_Login):
 
         if check_password_hash(retrieved_password[0], self.password):
             self.send_username.emit(str(self.user))
-            windowUi.show()
+            menuWindow.show()
             conn.close()
             dialogLogin.close()
         else:
@@ -1011,6 +1024,19 @@ class DialogRecoverPassword(qtw.QDialog, Ui_Dialog_recover_password):
         dialogRecover.close()
 
 
+class MenuWindow(qtw.QMainWindow, Ui_MainWindow_menu):
+    def __init__(self, *args, **kwargs):
+        super(MenuWindow, self).__init__(*args, **kwargs)
+        self.setupUi(self)
+
+        self.setWindowIcon(qtg.QIcon("logo256png.png"))
+        # self.show()
+        self.pushButton_publications.clicked.connect(self.publications_window)
+    
+    def publications_window(self):
+        publicationsWindow.show()
+        self.close()
+
 if __name__ == "__main__":
     import sys
 
@@ -1021,7 +1047,8 @@ if __name__ == "__main__":
     addAuthor = AddAuthor()
     addDatabase = AddDatabase()
     pubSearch = PubSearch()
-    windowUi = WindowUi()
+    menuWindow = MenuWindow()
+    publicationsWindow = PublicationsWindow()
     # addAuthor.show()
     dialogLogin.show()
 
