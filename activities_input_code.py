@@ -15,6 +15,66 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1583, 856)
+        MainWindow.setStyleSheet("QWidget {\n"
+"  background-color: #fff;\n"
+"}\n"
+"QLabel {\n"
+"  color: #464d55;\n"
+"  font-weight: 600;\n"
+"}\n"
+"QLabel#heading {\n"
+"  color: #0f1925;\n"
+"  font-size: 18px;\n"
+"  margin-bottom: 10px;\n"
+"}\n"
+"\n"
+"QLabel#subheading {\n"
+"  color: #0f1925;\n"
+"  font-size: 12px;\n"
+"  font-weight: normal;\n"
+"  margin-bottom: 10px;\n"
+"}\n"
+"QLineEdit {\n"
+"  border-radius: 8px;\n"
+"  border: 1px solid #e0e4e7;\n"
+"  padding: 5px 15px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"  border: 1px solid #d0e3ff;\n"
+"}\n"
+"\n"
+"QLineEdit::placeholder {\n"
+"  color: #767e89;\n"
+"}\n"
+"QPushButton {\n"
+"  background-color: #0d6efd;\n"
+"  color: #fff;\n"
+"  font-weight: 600;\n"
+"  border-radius: 8px;\n"
+"  border: 1px solid #0d6efd;\n"
+"  padding: 10px 10px;\n"
+"  margin-top: 10px;\n"
+"  outline: 0px;\n"
+"}\n"
+"QPushButton:hover,\n"
+"QPushButton:focus {\n"
+"  background-color: #0b5ed7;\n"
+"  border: 1px solid #9ac3fe;\n"
+"}\n"
+"QMenu {\n"
+"background-color: #fff;\n"
+"border: 1px solid black;\n"
+"margin: 2px;\n"
+"}\n"
+"QMenu::item {\n"
+"background-color: transparent;\n"
+"}\n"
+"QMenu::item:selected {\n"
+"background-color: #0b5ed7;\n"
+"color: rgb(255,255,255);\n"
+"}\n"
+"")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -44,6 +104,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_19.setFont(font)
@@ -54,6 +116,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_20.setFont(font)
@@ -72,6 +136,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_15.setFont(font)
@@ -81,6 +147,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_17.setFont(font)
@@ -90,6 +158,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_18.setFont(font)
@@ -109,6 +179,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_16.setFont(font)
@@ -127,6 +199,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_24.setFont(font)
@@ -139,6 +213,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_25.setFont(font)
@@ -148,6 +224,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_23.setFont(font)
@@ -163,6 +241,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_22.setFont(font)
@@ -179,6 +259,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_21.setFont(font)
@@ -192,6 +274,9 @@ class Ui_MainWindow(object):
         self.dateEdit_publicacion.setObjectName("dateEdit_publicacion")
         self.gridLayout.addWidget(self.dateEdit_publicacion, 5, 1, 1, 1)
         self.comboBox_categoria = QtWidgets.QComboBox(self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.comboBox_categoria.setFont(font)
         self.comboBox_categoria.setObjectName("comboBox_categoria")
         self.gridLayout.addWidget(self.comboBox_categoria, 3, 1, 1, 1)
         self.pushButton_agregar_autor = QtWidgets.QPushButton(self.centralwidget)
@@ -203,6 +288,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_4.setFont(font)
@@ -212,6 +299,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_6.setFont(font)
@@ -222,16 +311,21 @@ class Ui_MainWindow(object):
         self.spinBox_indiceH.setObjectName("spinBox_indiceH")
         self.gridLayout.addWidget(self.spinBox_indiceH, 10, 1, 1, 1)
         self.comboBox_area_salud = QtWidgets.QComboBox(self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.comboBox_area_salud.setFont(font)
         self.comboBox_area_salud.setObjectName("comboBox_area_salud")
         self.gridLayout.addWidget(self.comboBox_area_salud, 9, 1, 1, 1)
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_9.setFont(font)
-        self.label_9.setWordWrap(True)
+        self.label_9.setWordWrap(False)
         self.label_9.setObjectName("label_9")
         self.gridLayout.addWidget(self.label_9, 10, 0, 1, 1)
         self.pushButton_add_database = QtWidgets.QPushButton(self.centralwidget)
@@ -245,6 +339,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_5.setFont(font)
@@ -252,18 +348,29 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
         self.comboBox_revista = QtWidgets.QComboBox(self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.comboBox_revista.setFont(font)
         self.comboBox_revista.setObjectName("comboBox_revista")
         self.gridLayout.addWidget(self.comboBox_revista, 2, 1, 1, 1)
         self.comboBox_pais = QtWidgets.QComboBox(self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.comboBox_pais.setFont(font)
         self.comboBox_pais.setObjectName("comboBox_pais")
         self.gridLayout.addWidget(self.comboBox_pais, 4, 1, 1, 1)
         self.comboBox_tipo = QtWidgets.QComboBox(self.centralwidget)
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.comboBox_tipo.setFont(font)
         self.comboBox_tipo.setObjectName("comboBox_tipo")
         self.gridLayout.addWidget(self.comboBox_tipo, 1, 1, 1, 1)
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_8.setFont(font)
@@ -273,6 +380,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_7.setFont(font)
@@ -283,6 +392,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_3.setFont(font)
@@ -298,6 +409,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_2.setFont(font)
@@ -307,6 +420,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label.setFont(font)
@@ -316,6 +431,8 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_10.setFont(font)
@@ -325,11 +442,20 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.gridLayout_4)
         self.gridLayout_5 = QtWidgets.QGridLayout()
         self.gridLayout_5.setObjectName("gridLayout_5")
+        self.label_12 = QtWidgets.QLabel(self.centralwidget)
+        self.label_12.setObjectName("label_12")
+        self.gridLayout_5.addWidget(self.label_12, 0, 0, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(1168, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout_5.addItem(spacerItem1, 0, 0, 1, 1)
+        self.gridLayout_5.addItem(spacerItem1, 0, 2, 1, 1)
         self.pushButton_input = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_input.setObjectName("pushButton_input")
-        self.gridLayout_5.addWidget(self.pushButton_input, 0, 1, 1, 1)
+        self.gridLayout_5.addWidget(self.pushButton_input, 0, 3, 1, 1)
+        self.label_current_user = QtWidgets.QLabel(self.centralwidget)
+        self.label_current_user.setObjectName("label_current_user")
+        self.gridLayout_5.addWidget(self.label_current_user, 0, 1, 1, 1)
+        self.toolButton_logout = QtWidgets.QToolButton(self.centralwidget)
+        self.toolButton_logout.setObjectName("toolButton_logout")
+        self.gridLayout_5.addWidget(self.toolButton_logout, 1, 0, 1, 2)
         self.verticalLayout.addLayout(self.gridLayout_5)
         self.verticalLayout_2.addLayout(self.verticalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -376,7 +502,10 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Tipo de Publicación:"))
         self.label.setText(_translate("MainWindow", "Título:"))
         self.label_10.setText(_translate("MainWindow", "Autores:"))
-        self.pushButton_input.setText(_translate("MainWindow", "Guardar"))
+        self.label_12.setText(_translate("MainWindow", "Usuario:"))
+        self.pushButton_input.setText(_translate("MainWindow", "            Guardar            "))
+        self.label_current_user.setText(_translate("MainWindow", "usuario"))
+        self.toolButton_logout.setText(_translate("MainWindow", "Salir"))
 
 
 if __name__ == "__main__":

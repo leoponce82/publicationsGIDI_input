@@ -15,11 +15,71 @@ class Ui_Dialog_add_author(object):
     def setupUi(self, Dialog_add_author):
         Dialog_add_author.setObjectName("Dialog_add_author")
         Dialog_add_author.resize(338, 193)
+        Dialog_add_author.setStyleSheet("QWidget {\n"
+"  background-color: #fff;\n"
+"}\n"
+"QLabel {\n"
+"  color: #464d55;\n"
+"  font-weight: 600;\n"
+"}\n"
+"QLabel#heading {\n"
+"  color: #0f1925;\n"
+"  font-size: 18px;\n"
+"  margin-bottom: 10px;\n"
+"}\n"
+"\n"
+"QLabel#subheading {\n"
+"  color: #0f1925;\n"
+"  font-size: 12px;\n"
+"  font-weight: normal;\n"
+"  margin-bottom: 10px;\n"
+"}\n"
+"QLineEdit {\n"
+"  border-radius: 8px;\n"
+"  border: 1px solid #e0e4e7;\n"
+"  padding: 5px 15px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"  border: 1px solid #d0e3ff;\n"
+"}\n"
+"\n"
+"QLineEdit::placeholder {\n"
+"  color: #767e89;\n"
+"}\n"
+"QPushButton {\n"
+"  background-color: #0d6efd;\n"
+"  color: #fff;\n"
+"  font-weight: 600;\n"
+"  border-radius: 8px;\n"
+"  border: 1px solid #0d6efd;\n"
+"  padding: 10px 10px;\n"
+"  margin-top: 10px;\n"
+"  outline: 0px;\n"
+"}\n"
+"QPushButton:hover,\n"
+"QPushButton:focus {\n"
+"  background-color: #0b5ed7;\n"
+"  border: 1px solid #9ac3fe;\n"
+"}\n"
+"QMenu {\n"
+"background-color: #fff;\n"
+"border: 1px solid black;\n"
+"margin: 2px;\n"
+"}\n"
+"QMenu::item {\n"
+"background-color: transparent;\n"
+"}\n"
+"QMenu::item:selected {\n"
+"background-color: #0b5ed7;\n"
+"color: rgb(255,255,255);\n"
+"}\n"
+"")
         self.pushButton_guardar_autor = QtWidgets.QPushButton(Dialog_add_author)
-        self.pushButton_guardar_autor.setGeometry(QtCore.QRect(250, 20, 75, 23))
+        self.pushButton_guardar_autor.setGeometry(QtCore.QRect(240, 10, 81, 51))
         self.pushButton_guardar_autor.setObjectName("pushButton_guardar_autor")
         self.layoutWidget = QtWidgets.QWidget(Dialog_add_author)
-        self.layoutWidget.setGeometry(QtCore.QRect(20, 20, 211, 145))
+        self.layoutWidget.setGeometry(QtCore.QRect(20, 20, 211, 169))
         self.layoutWidget.setObjectName("layoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -28,6 +88,8 @@ class Ui_Dialog_add_author(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_2.setFont(font)
@@ -40,6 +102,8 @@ class Ui_Dialog_add_author(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_3.setFont(font)
@@ -52,6 +116,8 @@ class Ui_Dialog_add_author(object):
         font = QtGui.QFont()
         font.setFamily("Inter")
         font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
         font.setKerning(True)
         font.setStyleStrategy(QtGui.QFont.PreferAntialias)
         self.label_4.setFont(font)

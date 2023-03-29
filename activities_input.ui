@@ -383,7 +383,13 @@ color: rgb(255,255,255);
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QComboBox" name="comboBox_categoria"/>
+           <widget class="QComboBox" name="comboBox_categoria">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </widget>
           </item>
           <item row="12" column="1">
            <widget class="QPushButton" name="pushButton_agregar_autor">
@@ -447,7 +453,13 @@ color: rgb(255,255,255);
            </widget>
           </item>
           <item row="9" column="1">
-           <widget class="QComboBox" name="comboBox_area_salud"/>
+           <widget class="QComboBox" name="comboBox_area_salud">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </widget>
           </item>
           <item row="10" column="0">
            <widget class="QLabel" name="label_9">
@@ -465,7 +477,7 @@ color: rgb(255,255,255);
              <string>Índice de citación - Índice H</string>
             </property>
             <property name="wordWrap">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -504,13 +516,31 @@ color: rgb(255,255,255);
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QComboBox" name="comboBox_revista"/>
+           <widget class="QComboBox" name="comboBox_revista">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </widget>
           </item>
           <item row="4" column="1">
-           <widget class="QComboBox" name="comboBox_pais"/>
+           <widget class="QComboBox" name="comboBox_pais">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QComboBox" name="comboBox_tipo"/>
+           <widget class="QComboBox" name="comboBox_tipo">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </widget>
           </item>
           <item row="9" column="0">
            <widget class="QLabel" name="label_8">
@@ -630,6 +660,13 @@ color: rgb(255,255,255);
       <item>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Usuario:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
          <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -642,10 +679,24 @@ color: rgb(255,255,255);
           </property>
          </spacer>
         </item>
-        <item row="0" column="1">
+        <item row="0" column="3">
          <widget class="QPushButton" name="pushButton_input">
           <property name="text">
-           <string>Guardar</string>
+           <string>            Guardar            </string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_current_user">
+          <property name="text">
+           <string>usuario</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QToolButton" name="toolButton_logout">
+          <property name="text">
+           <string>Salir</string>
           </property>
          </widget>
         </item>

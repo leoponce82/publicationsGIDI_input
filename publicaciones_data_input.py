@@ -4,13 +4,14 @@ from add_databases_code import Ui_Dialog_add_databases
 from login_code import Ui_Dialog_Login
 from new_user_code import Ui_Dialog_new_user
 from recover_password_code import Ui_Dialog_recover_password
+from pub_search_code import Ui_MainWindow_pub_search
 
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtg
 from PyQt5.QtWidgets import QApplication as qta
 from PyQt5.QtWidgets import QLabel
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QAbstractTableModel
 
 import sqlite3
 import urllib.request
@@ -24,7 +25,7 @@ from openpyxl import load_workbook
 
 ADMIN_USER = "admin"
 ADMIN_PASSWORD = "admin"
-path = './users.db'
+path = "./users.db"
 check_file = os.path.exists(path)
 if check_file is False:
     conn = sqlite3.connect("users.db")
@@ -47,6 +48,30 @@ if check_file is False:
     )
     conn.commit()
     conn.close()
+
+
+class pandasModel(QAbstractTableModel):
+    def __init__(self, data):
+        QAbstractTableModel.__init__(self)
+        self._data = data
+
+    def rowCount(self, parent=None):
+        return self._data.shape[0]
+
+    def columnCount(self, parnet=None):
+        return self._data.shape[1]
+
+    def data(self, index, role=Qt.DisplayRole):  # type: ignore
+        if index.isValid():
+            if role == Qt.DisplayRole:  # type: ignore
+                return str(self._data.iloc[index.row(), index.column()])
+        return None
+
+    def headerData(self, col, orientation, role):
+        if orientation == Qt.Horizontal and role == Qt.DisplayRole:  # type: ignore
+            return self._data.columns[col]
+        return None
+
 
 authors = []
 authors_gender = []
@@ -87,7 +112,6 @@ revistas = {
     "Acta Tropica",
     "Photochemical & Photobiological Sciences",
     "Frontiers in microbiology",
-    "Congreso Internacional de Ordenamiento Territorial y Tecnologías de la Información Geográfica",
     "Water Resources Management",
     "Journal of Vector Ecology",
     "Entomotropica",
@@ -393,6 +417,8 @@ areas_salud = {
 
 direcciones = {"GIDI CZ9"}
 
+proy_status = {"Publicado", "Submitido", "Aceptado"}
+
 
 class WindowUi(qtw.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -402,6 +428,7 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
         self.setWindowIcon(qtg.QIcon("logo256png.png"))
         addAuthor.send_authors.connect(self.get_author)
         addDatabase.send_databases.connect(self.get_databases)
+        dialogLogin.send_username.connect(self.get_username)
 
         self.dateEdit_aceptacion.setDateTime(qtc.QDateTime.currentDateTime())
         self.dateEdit_envio.setDateTime(qtc.QDateTime.currentDateTime())
@@ -432,6 +459,11 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
         self.pushButton_agregar_autor.clicked.connect(self.show_add_author)
         self.pushButton_input.clicked.connect(self.input_data)
         self.pushButton_add_database.clicked.connect(self.show_add_database)
+        self.toolButton_logout.clicked.connect(self.logout)
+
+    def logout(self):
+        self.close()
+        dialogLogin.show()
 
     def ejecucionStateChange(self):
         if self.checkBox_ejecucion.isChecked():
@@ -537,6 +569,10 @@ class WindowUi(qtw.QMainWindow, Ui_MainWindow):
     def show_add_database(self):
         addDatabase.show()
 
+    def get_username(self, username):
+        self.current_user = username
+        self.label_current_user.setText(str(self.current_user))
+
     def get_author(self, author_name):
         if str(self.textEdit_autores.toPlainText()) != "":
             authors_str = (
@@ -638,6 +674,53 @@ class AddDatabase(qtw.QDialog, Ui_Dialog_add_databases):
         self.close()
 
 
+class PubSearch(qtw.QMainWindow, Ui_MainWindow_pub_search):
+    def __init__(self, *args, **kwargs):
+        super(PubSearch, self).__init__(*args, **kwargs)
+        self.setupUi(self)
+
+        self.setWindowIcon(qtg.QIcon("logo256png.png"))
+
+        self.dateEdit_year.setDateTime(qtc.QDateTime.currentDateTime())
+        self.lineEdit_keywords.setPlaceholderText("Separadas por coma: virus, ecuador")
+        self.lineEdit_author_search.setPlaceholderText(
+            "Separados por coma: Andres, Ximena"
+        )
+
+        self.pushButton_search.clicked.connect(self.search)
+
+        for each in sorted(tipos_publicaciones):
+            self.comboBox_type_search.addItem(each)
+        for each in sorted(revistas):
+            self.comboBox_journal_search.addItem(each)
+        for each in sorted(categorias):
+            self.comboBox_category_search.addItem(each)
+        for each in sorted(areas_salud):
+            self.comboBox_area_search.addItem(each)
+        for each in sorted(proy_status):
+            self.comboBox_pub_state_search.addItem(each)
+
+        self.show()
+
+    def search(self):
+        keywords_list = (str(self.lineEdit_keywords.text())).lower().replace(" ", "").split(",")
+        print(keywords_list)
+        pub_year = self.dateEdit_year.date().toPyDate()
+        pub_date = date(pub_year.year, 1, 1)
+        # print(pub_date)
+        publications_df = pandas.read_excel(
+            "INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx", sheet_name="Pbl_2022", header=1
+        )
+        # publications_df["Título"] = publications_df["Título"].str.lower()
+        publications_df = publications_df.query(
+            "`Fecha de Publicación (mm/dd/aaaa)` >= @pub_date"
+        )
+        publications_df = publications_df[publications_df["Título"].str.lower().str.contains('|'.join(keywords_list))]
+
+        model = pandasModel(publications_df)
+        self.tableView.setModel(model)
+
+
 class DialogLogin(qtw.QDialog, Ui_Dialog_Login):
     send_username = qtc.pyqtSignal(str)
 
@@ -651,10 +734,12 @@ class DialogLogin(qtw.QDialog, Ui_Dialog_Login):
         self.pushButton_cancel_login.clicked.connect(self.close_popup)
         self.toolButton_new_user.clicked.connect(self.new_user)
         self.toolButton_recover_password.clicked.connect(self.recover)
-        
+
         conn = sqlite3.connect("users.db")
         c = conn.cursor()
-        all_users_list = [user_name[0] for user_name in c.execute("SELECT user_name FROM users")]
+        all_users_list = [
+            user_name[0] for user_name in c.execute("SELECT user_name FROM users")
+        ]
         conn.close()
         for each in all_users_list:
             self.comboBox_login_users.addItem(each)
@@ -723,8 +808,6 @@ class DialogNewUser(qtw.QDialog, Ui_Dialog_new_user):
 
         self.pushButton_Ok_newuser.clicked.connect(self.new_user)
         self.pushButton_cancel_newuser.clicked.connect(self.close_popup)
-        
-            
 
     def close_popup(self):
         dialogNewUser.close()
@@ -796,14 +879,15 @@ class DialogRecoverPassword(qtw.QDialog, Ui_Dialog_recover_password):
 
         self.pushButton_Ok_recover.clicked.connect(self.recover)
         self.pushButton_cancel_recover.clicked.connect(self.close_popup)
-        
+
         conn = sqlite3.connect("users.db")
         c = conn.cursor()
-        all_users_list = [user_name[0] for user_name in c.execute("SELECT user_name FROM users")]
+        all_users_list = [
+            user_name[0] for user_name in c.execute("SELECT user_name FROM users")
+        ]
         conn.close()
         for each in all_users_list:
             self.comboBox_recover_users.addItem(each)
-        
 
     def close_popup(self):
         dialogRecover.close()
@@ -845,6 +929,7 @@ if __name__ == "__main__":
     dialogRecover = DialogRecoverPassword()
     addAuthor = AddAuthor()
     addDatabase = AddDatabase()
+    pubSearch = PubSearch()
     windowUi = WindowUi()
     # addAuthor.show()
     dialogLogin.show()
