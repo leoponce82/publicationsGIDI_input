@@ -48,7 +48,7 @@
        </widget>
       </item>
       <item row="4" column="2">
-       <widget class="QCheckBox" name="checkBox_7">
+       <widget class="QCheckBox" name="checkBox_pub_state">
         <property name="font">
          <font>
           <family>Inter</family>
@@ -80,7 +80,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QCheckBox" name="checkBox_6">
+       <widget class="QCheckBox" name="checkBox_area">
         <property name="font">
          <font>
           <family>Inter</family>
@@ -98,7 +98,7 @@
        <widget class="QComboBox" name="comboBox_area_search"/>
       </item>
       <item row="3" column="2">
-       <widget class="QCheckBox" name="checkBox_5">
+       <widget class="QCheckBox" name="checkBox_author">
         <property name="font">
          <font>
           <family>Inter</family>
@@ -113,7 +113,7 @@
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QCheckBox" name="checkBox_4">
+       <widget class="QCheckBox" name="checkBox_category">
         <property name="font">
          <font>
           <family>Inter</family>
@@ -131,7 +131,7 @@
        <widget class="QComboBox" name="comboBox_category_search"/>
       </item>
       <item row="1" column="0">
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="checkBox_keywords">
         <property name="font">
          <font>
           <family>Inter</family>
@@ -156,7 +156,7 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QCheckBox" name="checkBox_2">
+       <widget class="QCheckBox" name="checkBox_year">
         <property name="font">
          <font>
           <family>Inter</family>
@@ -181,7 +181,7 @@
        </widget>
       </item>
       <item row="3" column="0">
-       <widget class="QCheckBox" name="checkBox_3">
+       <widget class="QCheckBox" name="checkBox_type">
         <property name="font">
          <font>
           <family>Inter</family>
@@ -199,7 +199,7 @@
        <widget class="QComboBox" name="comboBox_type_search"/>
       </item>
       <item row="4" column="0">
-       <widget class="QCheckBox" name="checkBox_8">
+       <widget class="QCheckBox" name="checkBox_journal">
         <property name="font">
          <font>
           <family>Inter</family>

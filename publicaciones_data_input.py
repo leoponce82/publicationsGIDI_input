@@ -703,21 +703,112 @@ class PubSearch(qtw.QMainWindow, Ui_MainWindow_pub_search):
         self.show()
 
     def search(self):
-        keywords_list = (str(self.lineEdit_keywords.text())).lower().replace(" ", "").split(",")
-        print(keywords_list)
-        pub_year = self.dateEdit_year.date().toPyDate()
-        pub_date = date(pub_year.year, 1, 1)
-        # print(pub_date)
         publications_df = pandas.read_excel(
             "INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx", sheet_name="Pbl_2022", header=1
         )
-        # publications_df["Título"] = publications_df["Título"].str.lower()
-        publications_df = publications_df.query(
-            "`Fecha de Publicación (mm/dd/aaaa)` >= @pub_date"
-        )
-        publications_df = publications_df[publications_df["Título"].str.lower().str.contains('|'.join(keywords_list))]
 
-        model = pandasModel(publications_df)
+        if self.checkBox_keywords.isChecked():
+            keywords_list = (
+                (str(self.lineEdit_keywords.text())).lower().replace(" ", "").split(",")
+            )
+            print(keywords_list)
+        else:
+            keywords_list = []
+
+        if self.checkBox_year.isChecked():
+            pub_year = self.dateEdit_year.date().toPyDate()
+            pub_date = date(pub_year.year, 1, 1)
+            publications_df = publications_df.query(
+                "`Fecha de Publicación (mm/dd/aaaa)` >= @pub_date"
+            )
+
+        if self.checkBox_type.isChecked():
+            type_list = [str(self.comboBox_type_search.currentText())]
+        else:
+            type_list = []
+
+        if self.checkBox_journal.isChecked():
+            journal_list = [str(self.comboBox_journal_search.currentText()).lower()]
+        else:
+            journal_list = []
+
+        if self.checkBox_category.isChecked():
+            category_list = [str(self.comboBox_category_search.currentText())]
+        else:
+            category_list = []
+
+        if self.checkBox_area.isChecked():
+            area_list = [str(self.comboBox_area_search.currentText())]
+        else:
+            area_list = []
+
+        if self.checkBox_author.isChecked():
+            author_list = (
+                (str(self.lineEdit_author_search.text()))
+                .lower()
+                .replace(" ", "")
+                .split(",")
+            )
+        else:
+            author_list = []
+
+        if self.checkBox_pub_state.isChecked():
+            pub_state_list = [str(self.comboBox_pub_state_search.currentText())]
+        else:
+            pub_state_list = []
+
+        # publications_df = publications_df[
+        #     publications_df["Título"].str.lower().str.contains("|".join(keywords_list))
+        #     & (publications_df["TIPO DE PUBLICACIÓN"].isin(type_list))
+        #     & (publications_df["Revista"].isin(journal_list))
+        #     & (publications_df.iloc[:, 4].isin(category_list))
+        #     & (
+        #         publications_df[
+        #             "Área de salud en la que esta enfocada la publicación"
+        #         ].isin(area_list)
+        #     )
+        #     & (
+        #         publications_df["Nombres del autor (INSPI)"]
+        #         .str.lower()
+        #         .str.contains("|".join(author_list))
+        #     )
+        # ]
+
+        filtered_df = publications_df.copy()
+        if keywords_list:
+            filtered_df = filtered_df[
+                filtered_df["Título"].str.lower().str.contains("|".join(keywords_list))
+            ]
+        if type_list:
+            filtered_df = filtered_df[
+                filtered_df["TIPO DE PUBLICACIÓN"].str.strip().isin(type_list)
+            ]
+        if journal_list:
+            filtered_df = filtered_df[
+                filtered_df["Revista"].str.lower().str.strip().isin(journal_list)
+            ]
+        if category_list:
+            filtered_df = filtered_df[
+                filtered_df.iloc[:, 4].str.strip().isin(category_list)
+            ]  # error on categoria with tilde
+        if area_list:
+            filtered_df = filtered_df[
+                filtered_df["Área de salud en la que esta enfocada la publicación"]
+                .str.strip()
+                .isin(area_list)
+            ]
+        if author_list:
+            filtered_df = filtered_df[
+                filtered_df["Nombres del autor (INSPI)"]
+                .str.lower()
+                .str.contains("|".join(author_list))
+            ]
+        if pub_state_list:
+            filtered_df = filtered_df[
+                filtered_df["Estado"].str.strip().isin(pub_state_list)
+            ]
+
+        model = pandasModel(filtered_df)
         self.tableView.setModel(model)
 
 
