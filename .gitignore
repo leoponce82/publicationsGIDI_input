@@ -30,3 +30,5 @@ ui_files/__pycache__/new_user_code.cpython-310.pyc
 ui_files/__pycache__/pub_search_code.cpython-310.pyc
 ui_files/__pycache__/recover_password_code.cpython-310.pyc
 __pycache__/gidi_data_input.cpython-310.pyc
+ui_classes/__pycache__/remove_author_class.cpython-310.pyc
+ui_files/__pycache__/remove_authors_code.cpython-310.pyc

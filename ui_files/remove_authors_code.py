@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'add_databases.ui'
+# Form implementation generated from reading ui file 'remove_authors.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.8
 #
@@ -11,11 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog_add_databases(object):
-    def setupUi(self, Dialog_add_databases):
-        Dialog_add_databases.setObjectName("Dialog_add_databases")
-        Dialog_add_databases.resize(280, 104)
-        Dialog_add_databases.setStyleSheet("QWidget {\n"
+class Ui_Dialog_remove_author(object):
+    def setupUi(self, Dialog_remove_author):
+        Dialog_remove_author.setObjectName("Dialog_remove_author")
+        Dialog_remove_author.resize(280, 104)
+        Dialog_remove_author.setStyleSheet("QWidget {\n"
 "  background-color: #fff;\n"
 "}\n"
 "QLabel {\n"
@@ -75,36 +75,32 @@ class Ui_Dialog_add_databases(object):
 "color: rgb(255,255,255);\n"
 "}\n"
 "")
-        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog_add_databases)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog_remove_author)
         self.verticalLayout.setObjectName("verticalLayout")
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        self.comboBox_databases = QtWidgets.QComboBox(Dialog_add_databases)
-        self.comboBox_databases.setObjectName("comboBox_databases")
-        self.gridLayout.addWidget(self.comboBox_databases, 0, 0, 1, 2)
-        self.pushButton_guardar_base_indexadas = QtWidgets.QPushButton(Dialog_add_databases)
-        self.pushButton_guardar_base_indexadas.setObjectName("pushButton_guardar_base_indexadas")
-        self.gridLayout.addWidget(self.pushButton_guardar_base_indexadas, 1, 1, 1, 1)
-        self.pushButton_eliminar_base_indexadas = QtWidgets.QPushButton(Dialog_add_databases)
-        self.pushButton_eliminar_base_indexadas.setObjectName("pushButton_eliminar_base_indexadas")
-        self.gridLayout.addWidget(self.pushButton_eliminar_base_indexadas, 1, 0, 1, 1)
+        self.comboBox_authors = QtWidgets.QComboBox(Dialog_remove_author)
+        self.comboBox_authors.setObjectName("comboBox_authors")
+        self.gridLayout.addWidget(self.comboBox_authors, 0, 0, 1, 2)
+        self.pushButton_remove_author = QtWidgets.QPushButton(Dialog_remove_author)
+        self.pushButton_remove_author.setObjectName("pushButton_remove_author")
+        self.gridLayout.addWidget(self.pushButton_remove_author, 1, 0, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout)
 
-        self.retranslateUi(Dialog_add_databases)
-        QtCore.QMetaObject.connectSlotsByName(Dialog_add_databases)
+        self.retranslateUi(Dialog_remove_author)
+        QtCore.QMetaObject.connectSlotsByName(Dialog_remove_author)
 
-    def retranslateUi(self, Dialog_add_databases):
+    def retranslateUi(self, Dialog_remove_author):
         _translate = QtCore.QCoreApplication.translate
-        Dialog_add_databases.setWindowTitle(_translate("Dialog_add_databases", "Editar bases de datos indexada"))
-        self.pushButton_guardar_base_indexadas.setText(_translate("Dialog_add_databases", "Agregar"))
-        self.pushButton_eliminar_base_indexadas.setText(_translate("Dialog_add_databases", "Eliminar"))
+        Dialog_remove_author.setWindowTitle(_translate("Dialog_remove_author", "Eliminar autor"))
+        self.pushButton_remove_author.setText(_translate("Dialog_remove_author", "Eliminar"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog_add_databases = QtWidgets.QDialog()
-    ui = Ui_Dialog_add_databases()
-    ui.setupUi(Dialog_add_databases)
-    Dialog_add_databases.show()
+    Dialog_remove_author = QtWidgets.QDialog()
+    ui = Ui_Dialog_remove_author()
+    ui.setupUi(Dialog_remove_author)
+    Dialog_remove_author.show()
     sys.exit(app.exec_())

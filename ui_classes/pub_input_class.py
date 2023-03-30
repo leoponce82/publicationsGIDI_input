@@ -7,6 +7,8 @@ from gidi_data_input import (
     areas_salud,
     direcciones,
     authors_gender,
+    authors,
+    added_databases,
 )
 
 
@@ -382,6 +384,7 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
         addDatabase,
         dialogLogin,
         pubSearch,
+        removeAuthor,
         *args,
         **kwargs
     ):
@@ -392,8 +395,10 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
         self.addDatabase = addDatabase
         self.dialogLogin = dialogLogin
         self.pubSearch = pubSearch
+        self.removeAuthor = removeAuthor
         self.setWindowIcon(qtg.QIcon("logo256png.png"))
         addAuthor.send_authors.connect(self.get_author)
+        removeAuthor.send_authors.connect(self.get_author)
         addDatabase.send_databases.connect(self.get_databases)
         menuWindow.menu_send_username.connect(self.get_username)
 
@@ -428,6 +433,13 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
         self.pushButton_add_database.clicked.connect(self.show_add_database)
         self.toolButton_logout.clicked.connect(self.logout)
         self.toolButton_search_data.clicked.connect(self.search_data)
+        self.toolButton_edit_authors.clicked.connect(self.edit_authors)
+    
+    def edit_authors(self):
+        self.removeAuthor.comboBox_authors.clear()
+        for each in authors:
+            self.removeAuthor.comboBox_authors.addItem(each)
+        self.removeAuthor.show()
 
     def logout(self):
         self.close()
@@ -488,9 +500,9 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
             # print(self.checkBox_submitido.isChecked())
             self.pub_state = None
 
-        gender_write = ""
-        for each in authors_gender:
-            gender_write = gender_write + each + "\n"
+        # gender_write = ""
+        # for each in authors_gender:
+        #     gender_write = gender_write + each + "\n"
 
         to_append = [
             self.last_No + 1,
@@ -504,7 +516,7 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
             self.comboBox_area_salud.currentText(),
             self.spinBox_indiceH.value(),
             self.textEdit_autores.toPlainText(),
-            gender_write,
+            self.textEdit_gender.toPlainText(),
             self.lineEdit_doi.text(),
             self.lineEdit_issn.text(),
             self.textEdit_resumen.toPlainText(),
@@ -550,22 +562,25 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
         self.current_user = username
         self.label_current_user.setText(str(self.current_user))
 
-    def get_author(self, author_name):
-        if str(self.textEdit_autores.toPlainText()) != "":
-            authors_str = (
-                str(self.textEdit_autores.toPlainText()) + "\n" + str(author_name)
-            )
-            self.textEdit_autores.setPlainText(authors_str)
-        else:
-            authors_str = str(author_name)
-            self.textEdit_autores.setPlainText(authors_str)
+    def get_author(self):
+        # print(authors)
+        self.textEdit_gender.clear()
+        self.textEdit_autores.clear()
+        
+        authors_str = "\n".join(authors)
+        self.textEdit_autores.setPlainText(authors_str)
+        genders_str = "\n".join(authors_gender)
+        self.textEdit_gender.setPlainText(genders_str)
 
-    def get_databases(self, database):
-        if str(self.textEdit_databases.toPlainText()) != "":
-            database_str = (
-                str(self.textEdit_databases.toPlainText()) + "\n" + str(database)
-            )
-            self.textEdit_databases.setPlainText(database_str)
-        else:
-            database_str = str(database)
-            self.textEdit_databases.setPlainText(database_str)
+    def get_databases(self):
+        added_databases_str = "\n".join(sorted(added_databases))
+        self.textEdit_databases.setPlainText(added_databases_str)
+
+        # if str(self.textEdit_databases.toPlainText()) != "":
+        #     database_str = (
+        #         str(self.textEdit_databases.toPlainText()) + "\n" + str(database)
+        #     )
+        #     self.textEdit_databases.setPlainText(database_str)
+        # else:
+        #     database_str = str(database)
+        #     self.textEdit_databases.setPlainText(database_str)

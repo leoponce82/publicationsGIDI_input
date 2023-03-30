@@ -15,41 +15,106 @@ class Ui_MainWindow_menu(object):
     def setupUi(self, MainWindow_menu):
         MainWindow_menu.setObjectName("MainWindow_menu")
         MainWindow_menu.resize(331, 224)
+        MainWindow_menu.setStyleSheet("QWidget {\n"
+"  background-color: #fff;\n"
+"}\n"
+"QLabel {\n"
+"  color: #464d55;\n"
+"  font-weight: 600;\n"
+"}\n"
+"QLabel#heading {\n"
+"  color: #0f1925;\n"
+"  font-size: 18px;\n"
+"  margin-bottom: 10px;\n"
+"}\n"
+"\n"
+"QLabel#subheading {\n"
+"  color: #0f1925;\n"
+"  font-size: 12px;\n"
+"  font-weight: normal;\n"
+"  margin-bottom: 10px;\n"
+"}\n"
+"QLineEdit {\n"
+"  border-radius: 8px;\n"
+"  border: 1px solid #e0e4e7;\n"
+"  padding: 5px 15px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"  border: 1px solid #d0e3ff;\n"
+"}\n"
+"\n"
+"QLineEdit::placeholder {\n"
+"  color: #767e89;\n"
+"}\n"
+"QPushButton {\n"
+"  background-color: #0d6efd;\n"
+"  color: #fff;\n"
+"  font-weight: 600;\n"
+"  border-radius: 8px;\n"
+"  border: 1px solid #0d6efd;\n"
+"  padding: 10px 10px;\n"
+"  margin-top: 1px;\n"
+"  outline: 0px;\n"
+"}\n"
+"QPushButton:hover,\n"
+"QPushButton:focus {\n"
+"  background-color: #0b5ed7;\n"
+"  border: 1px solid #9ac3fe;\n"
+"}\n"
+"QMenu {\n"
+"background-color: #fff;\n"
+"border: 1px solid black;\n"
+"margin: 2px;\n"
+"}\n"
+"QMenu::item {\n"
+"background-color: transparent;\n"
+"}\n"
+"QMenu::item:selected {\n"
+"background-color: #0b5ed7;\n"
+"color: rgb(255,255,255);\n"
+"}\n"
+"")
         self.centralwidget = QtWidgets.QWidget(MainWindow_menu)
         self.centralwidget.setObjectName("centralwidget")
-        self.label_current_user = QtWidgets.QLabel(self.centralwidget)
-        self.label_current_user.setGeometry(QtCore.QRect(80, 120, 42, 45))
-        self.label_current_user.setObjectName("label_current_user")
-        self.label_12 = QtWidgets.QLabel(self.centralwidget)
-        self.label_12.setGeometry(QtCore.QRect(28, 120, 46, 45))
-        self.label_12.setObjectName("label_12")
-        self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(30, 30, 239, 83))
-        self.widget.setObjectName("widget")
-        self.gridLayout = QtWidgets.QGridLayout(self.widget)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.formLayout = QtWidgets.QFormLayout()
+        self.formLayout.setObjectName("formLayout")
+        self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
-        self.pushButton = QtWidgets.QPushButton(self.widget)
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton, 0, 0, 1, 1)
-        self.pushButton_2 = QtWidgets.QPushButton(self.widget)
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setObjectName("pushButton_2")
         self.gridLayout.addWidget(self.pushButton_2, 0, 1, 1, 1)
-        self.pushButton_3 = QtWidgets.QPushButton(self.widget)
+        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_3.setObjectName("pushButton_3")
         self.gridLayout.addWidget(self.pushButton_3, 0, 2, 1, 1)
-        self.pushButton_4 = QtWidgets.QPushButton(self.widget)
+        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_4.setObjectName("pushButton_4")
         self.gridLayout.addWidget(self.pushButton_4, 1, 0, 1, 1)
-        self.pushButton_5 = QtWidgets.QPushButton(self.widget)
+        self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_5.setObjectName("pushButton_5")
         self.gridLayout.addWidget(self.pushButton_5, 1, 1, 1, 1)
-        self.pushButton_6 = QtWidgets.QPushButton(self.widget)
+        self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_6.setObjectName("pushButton_6")
         self.gridLayout.addWidget(self.pushButton_6, 1, 2, 1, 1)
-        self.pushButton_publications = QtWidgets.QPushButton(self.widget)
+        self.pushButton_publications = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_publications.setObjectName("pushButton_publications")
         self.gridLayout.addWidget(self.pushButton_publications, 2, 0, 1, 1)
+        self.formLayout.setLayout(0, QtWidgets.QFormLayout.LabelRole, self.gridLayout)
+        self.gridLayout_2 = QtWidgets.QGridLayout()
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_12 = QtWidgets.QLabel(self.centralwidget)
+        self.label_12.setObjectName("label_12")
+        self.gridLayout_2.addWidget(self.label_12, 0, 0, 1, 1)
+        self.label_current_user = QtWidgets.QLabel(self.centralwidget)
+        self.label_current_user.setObjectName("label_current_user")
+        self.gridLayout_2.addWidget(self.label_current_user, 0, 1, 1, 1)
+        self.formLayout.setLayout(1, QtWidgets.QFormLayout.LabelRole, self.gridLayout_2)
+        self.verticalLayout.addLayout(self.formLayout)
         MainWindow_menu.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow_menu)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 331, 21))
@@ -65,8 +130,6 @@ class Ui_MainWindow_menu(object):
     def retranslateUi(self, MainWindow_menu):
         _translate = QtCore.QCoreApplication.translate
         MainWindow_menu.setWindowTitle(_translate("MainWindow_menu", "Menu"))
-        self.label_current_user.setText(_translate("MainWindow_menu", "usuario"))
-        self.label_12.setText(_translate("MainWindow_menu", "Usuario:"))
         self.pushButton.setText(_translate("MainWindow_menu", "PushButton"))
         self.pushButton_2.setText(_translate("MainWindow_menu", "PushButton"))
         self.pushButton_3.setText(_translate("MainWindow_menu", "PushButton"))
@@ -74,6 +137,8 @@ class Ui_MainWindow_menu(object):
         self.pushButton_5.setText(_translate("MainWindow_menu", "PushButton"))
         self.pushButton_6.setText(_translate("MainWindow_menu", "PushButton"))
         self.pushButton_publications.setText(_translate("MainWindow_menu", "Publicaciones"))
+        self.label_12.setText(_translate("MainWindow_menu", "Usuario:"))
+        self.label_current_user.setText(_translate("MainWindow_menu", "usuario"))
 
 
 if __name__ == "__main__":

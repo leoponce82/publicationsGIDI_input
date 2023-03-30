@@ -13,7 +13,7 @@ from PyQt5.QtCore import Qt, QAbstractTableModel
 
 
 class AddAuthor(qtw.QDialog, Ui_Dialog_add_author):
-    send_authors = qtc.pyqtSignal(str)
+    send_authors = qtc.pyqtSignal()
 
     def __init__(self, *args, **kwargs):
         super(AddAuthor, self).__init__(*args, **kwargs)
@@ -30,7 +30,6 @@ class AddAuthor(qtw.QDialog, Ui_Dialog_add_author):
         self.checkBox_masc.stateChanged.connect(self.mascStateChange)
         self.checkBox_otro.stateChanged.connect(self.otherStateChange)
 
-
     def add_author(self):
         if (
             str(self.lineEdit_nombres.text()) == ""
@@ -45,12 +44,19 @@ class AddAuthor(qtw.QDialog, Ui_Dialog_add_author):
         )
         if self.checkBox_otro.isChecked():
             self.genero = self.lineEdit_genero.text()
-
-        self.send_authors.emit(str(self.full_name))
-        print(self.full_name, self.genero)
+        if (
+            not self.checkBox_fem.isChecked()
+            and not self.checkBox_masc.isChecked()
+            and not self.checkBox_otro.isChecked()
+        ):
+            qtw.QMessageBox.information(self, "Error", "Ingrese género")
+            return
+        
         authors.append(self.full_name)
         authors_gender.append(self.genero)
-        # print(self.send_authors)
+        self.send_authors.emit()
+        # print("add_author", self.full_name, self.genero)
+        print(authors)
         self.close()
 
     def femStateChange(self):

@@ -42,7 +42,7 @@ class DialogLogin(qtw.QDialog, Ui_Dialog_Login):
             user_name[0] for user_name in c.execute("SELECT user_name FROM users")
         }
         conn.close()
-        for each in all_users_list:
+        for each in sorted(all_users_list):
             self.comboBox_login_users.addItem(each)
             
     def set_dialog_new_user(self, dialog_new_user):

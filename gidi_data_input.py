@@ -45,6 +45,7 @@ if check_file is False:
 
 authors = []
 authors_gender = []
+added_databases = set()
 
 tipos_publicaciones = {
     "Publicación científica periódica",
@@ -399,12 +400,14 @@ if __name__ == "__main__":
     from ui_classes.recover_password_class import DialogRecoverPassword
     from ui_classes.pub_search_class import PubSearch
     from ui_classes.menu_class import MenuWindow
+    from ui_classes.remove_author_class import RemoveAuthor
     import sys
 
     app = qtw.QApplication(sys.argv)
 
     dialogRecover = DialogRecoverPassword()
     addAuthor = AddAuthor()
+    removeAuthor = RemoveAuthor()
     addDatabase = AddDatabase()
     pubSearch = PubSearch()
     menuWindow = MenuWindow()
@@ -413,7 +416,7 @@ if __name__ == "__main__":
     dialogLogin.set_dialog_new_user(dialogNewUser)
     dialogLogin.send_username.connect(menuWindow.get_username)
     publicationsWindow = PublicationsWindow(
-        menuWindow, addAuthor, addDatabase, dialogLogin, pubSearch
+        menuWindow, addAuthor, addDatabase, dialogLogin, pubSearch, removeAuthor
     )
     menuWindow.set_publications_window(publicationsWindow)
     dialogLogin.show()

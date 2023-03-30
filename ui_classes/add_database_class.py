@@ -1,5 +1,6 @@
 from ui_files.add_databases_code import Ui_Dialog_add_databases
-from gidi_data_input import databases
+from gidi_data_input import databases, added_databases
+
 
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
@@ -51,8 +52,9 @@ from PyQt5.QtCore import Qt, QAbstractTableModel
 #     "Zoological Record",
 # }
 
+
 class AddDatabase(qtw.QDialog, Ui_Dialog_add_databases):
-    send_databases = qtc.pyqtSignal(str)
+    send_databases = qtc.pyqtSignal()
 
     def __init__(self, *args, **kwargs):
         super(AddDatabase, self).__init__(*args, **kwargs)
@@ -62,8 +64,17 @@ class AddDatabase(qtw.QDialog, Ui_Dialog_add_databases):
         for each in sorted(databases):
             self.comboBox_databases.addItem(each)
         self.pushButton_guardar_base_indexadas.clicked.connect(self.add_database)
+        self.pushButton_eliminar_base_indexadas.clicked.connect(self.delete_database)
 
     def add_database(self):
-        self.send_databases.emit(str(self.comboBox_databases.currentText()))
+        added_databases.add(self.comboBox_databases.currentText())
+        self.send_databases.emit()
         self.close()
 
+    def delete_database(self):
+        try:
+            added_databases.remove(self.comboBox_databases.currentText())
+            self.send_databases.emit()
+            self.close()
+        except KeyError:
+            return
