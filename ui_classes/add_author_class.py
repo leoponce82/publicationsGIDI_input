@@ -30,8 +30,6 @@ class AddAuthor(qtw.QDialog, Ui_Dialog_add_author):
         self.checkBox_masc.stateChanged.connect(self.mascStateChange)
         self.checkBox_otro.stateChanged.connect(self.otherStateChange)
 
-        self.authors = []
-        self.authors_gender = []
 
     def add_author(self):
         if (
@@ -50,8 +48,8 @@ class AddAuthor(qtw.QDialog, Ui_Dialog_add_author):
 
         self.send_authors.emit(str(self.full_name))
         print(self.full_name, self.genero)
-        self.authors.append(self.full_name)
-        self.authors_gender.append(self.genero)
+        authors.append(self.full_name)
+        authors_gender.append(self.genero)
         # print(self.send_authors)
         self.close()
 

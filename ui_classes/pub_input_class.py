@@ -1,5 +1,13 @@
 from ui_files.activities_input_code import Ui_MainWindow
-from gidi_data_input import tipos_publicaciones, revistas, categorias, paises, areas_salud, direcciones, authors_gender
+from gidi_data_input import (
+    tipos_publicaciones,
+    revistas,
+    categorias,
+    paises,
+    areas_salud,
+    direcciones,
+    authors_gender,
+)
 
 
 from PyQt5 import QtWidgets as qtw
@@ -367,14 +375,23 @@ from openpyxl import load_workbook
 
 
 class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
-    def __init__(self,menuWindow,addAuthor, addDatabase, dialogLogin, pubSearch, *args, **kwargs):
+    def __init__(
+        self,
+        menuWindow,
+        addAuthor,
+        addDatabase,
+        dialogLogin,
+        pubSearch,
+        *args,
+        **kwargs
+    ):
         super(PublicationsWindow, self).__init__(*args, **kwargs)
         self.setupUi(self)
-        self.menuWindow=menuWindow
-        self.addAuthor=addAuthor
-        self.addDatabase=addDatabase
-        self.dialogLogin=dialogLogin
-        self.pubSearch=pubSearch
+        self.menuWindow = menuWindow
+        self.addAuthor = addAuthor
+        self.addDatabase = addDatabase
+        self.dialogLogin = dialogLogin
+        self.pubSearch = pubSearch
         self.setWindowIcon(qtg.QIcon("logo256png.png"))
         addAuthor.send_authors.connect(self.get_author)
         addDatabase.send_databases.connect(self.get_databases)
@@ -502,13 +519,18 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
             self.project_state,
             self.textEdit_observaciones.toPlainText(),
         ]
-
-        wb = load_workbook("INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx")
-        ws = wb["Pbl_2022"]
-        ws.append(to_append)
-        wb.save("INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx")
-        print("saved")
-        qtw.QMessageBox.information(self, "Exito", "Datos ingresados correctamente")
+        try:
+            wb = load_workbook("INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx")
+            ws = wb["Pbl_2022"]
+            ws.append(to_append)
+            wb.save("INSPI_CZ9_GIDI_Pbl_Cnt_KL_2021_2022.xlsx")
+            print("saved")
+            qtw.QMessageBox.information(self, "Exito", "Datos ingresados correctamente")
+        except PermissionError:
+            qtw.QMessageBox.information(
+                self, "Error", "Cierre el archivo para guardar nuevos datos"
+            )
+            return
 
     def show_add_author(self):
         # addAuthor.__init__()  # To clear all fields
