@@ -1,6 +1,6 @@
 from ui_files.pub_search_code import Ui_MainWindow_pub_search
-from publicaciones_data_input import tipos_publicaciones, revistas, categorias, areas_salud, proy_status
-from publicaciones_data_input import EXPORT_FILE_NAME
+from gidi_data_input import tipos_publicaciones, revistas, categorias, areas_salud, proy_status
+from gidi_data_input import EXPORT_FILE_NAME
 
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc

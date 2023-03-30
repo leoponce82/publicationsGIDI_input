@@ -1,5 +1,5 @@
 from ui_files.activities_input_code import Ui_MainWindow
-from publicaciones_data_input import tipos_publicaciones, revistas, categorias, paises, areas_salud, direcciones, authors_gender
+from gidi_data_input import tipos_publicaciones, revistas, categorias, paises, areas_salud, direcciones, authors_gender
 
 
 from PyQt5 import QtWidgets as qtw

@@ -1,5 +1,5 @@
 from ui_files.add_author_code import Ui_Dialog_add_author
-from publicaciones_data_input import authors, authors_gender
+from gidi_data_input import authors, authors_gender
 
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc

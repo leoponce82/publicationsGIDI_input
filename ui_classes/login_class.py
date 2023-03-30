@@ -1,5 +1,5 @@
 from ui_files.login_code import Ui_Dialog_Login
-from publicaciones_data_input import ADMIN_USER, ADMIN_PASSWORD
+from gidi_data_input import ADMIN_USER, ADMIN_PASSWORD
 
 
 from PyQt5 import QtWidgets as qtw
