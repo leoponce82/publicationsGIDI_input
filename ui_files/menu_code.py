@@ -14,9 +14,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow_menu(object):
     def setupUi(self, MainWindow_menu):
         MainWindow_menu.setObjectName("MainWindow_menu")
-        MainWindow_menu.resize(331, 187)
+        MainWindow_menu.resize(331, 224)
         self.centralwidget = QtWidgets.QWidget(MainWindow_menu)
         self.centralwidget.setObjectName("centralwidget")
+        self.label_current_user = QtWidgets.QLabel(self.centralwidget)
+        self.label_current_user.setGeometry(QtCore.QRect(80, 120, 42, 45))
+        self.label_current_user.setObjectName("label_current_user")
+        self.label_12 = QtWidgets.QLabel(self.centralwidget)
+        self.label_12.setGeometry(QtCore.QRect(28, 120, 46, 45))
+        self.label_12.setObjectName("label_12")
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(30, 30, 239, 83))
         self.widget.setObjectName("widget")
@@ -59,6 +65,8 @@ class Ui_MainWindow_menu(object):
     def retranslateUi(self, MainWindow_menu):
         _translate = QtCore.QCoreApplication.translate
         MainWindow_menu.setWindowTitle(_translate("MainWindow_menu", "Menu"))
+        self.label_current_user.setText(_translate("MainWindow_menu", "usuario"))
+        self.label_12.setText(_translate("MainWindow_menu", "Usuario:"))
         self.pushButton.setText(_translate("MainWindow_menu", "PushButton"))
         self.pushButton_2.setText(_translate("MainWindow_menu", "PushButton"))
         self.pushButton_3.setText(_translate("MainWindow_menu", "PushButton"))

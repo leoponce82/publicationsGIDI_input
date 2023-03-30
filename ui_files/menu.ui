@@ -7,13 +7,39 @@
     <x>0</x>
     <y>0</y>
     <width>331</width>
-    <height>187</height>
+    <height>224</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Menu</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_current_user">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>120</y>
+      <width>42</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>usuario</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>28</x>
+      <y>120</y>
+      <width>46</width>
+      <height>45</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Usuario:</string>
+    </property>
+   </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
