@@ -511,4 +511,7 @@ class PubSearch(qtw.QMainWindow, Ui_MainWindow_pub_search):
             ]
         self.export_df = filtered_df.copy()
         model = pandasModel(filtered_df)
+        
         self.tableView.setModel(model)
+        self.tableView.setWordWrap (True)
+        self.tableView.verticalHeader().setDefaultSectionSize(50);

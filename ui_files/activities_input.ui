@@ -161,7 +161,7 @@ color: rgb(255,255,255);
            </font>
           </property>
           <property name="text">
-           <string>Resumen:</string>
+           <string>* Resumen:</string>
           </property>
          </widget>
         </item>
@@ -265,7 +265,7 @@ color: rgb(255,255,255);
            </font>
           </property>
           <property name="text">
-           <string>Título:</string>
+           <string>* Título:</string>
           </property>
          </widget>
         </item>
@@ -295,7 +295,7 @@ color: rgb(255,255,255);
            </font>
           </property>
           <property name="text">
-           <string>Autores:</string>
+           <string>* Autores:</string>
           </property>
          </widget>
         </item>
@@ -393,7 +393,7 @@ color: rgb(255,255,255);
            </font>
           </property>
           <property name="text">
-           <string>Base de datos - indexadas:</string>
+           <string>* Base de datos indexadas:</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>

@@ -434,7 +434,7 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
         self.toolButton_logout.clicked.connect(self.logout)
         self.toolButton_search_data.clicked.connect(self.search_data)
         self.toolButton_edit_authors.clicked.connect(self.edit_authors)
-    
+
     def edit_authors(self):
         self.removeAuthor.comboBox_authors.clear()
         for each in authors:
@@ -500,9 +500,16 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
             # print(self.checkBox_submitido.isChecked())
             self.pub_state = None
 
-        # gender_write = ""
-        # for each in authors_gender:
-        #     gender_write = gender_write + each + "\n"
+        if (
+            self.textEdit_titulo.toPlainText() == ""
+            or self.textEdit_databases.toPlainText() == ""
+            or self.textEdit_autores.toPlainText() == ""
+            or self.textEdit_resumen.toPlainText() == ""
+        ):
+            qtw.QMessageBox.information(
+                self, "Error", "Complete los datos requeridos ( * )"
+            )
+            return
 
         to_append = [
             self.last_No + 1,
@@ -566,7 +573,7 @@ class PublicationsWindow(qtw.QMainWindow, Ui_MainWindow):
         # print(authors)
         self.textEdit_gender.clear()
         self.textEdit_autores.clear()
-        
+
         authors_str = "\n".join(authors)
         self.textEdit_autores.setPlainText(authors_str)
         genders_str = "\n".join(authors_gender)
